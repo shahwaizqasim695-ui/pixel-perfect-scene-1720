@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as MyJourneyRouteImport } from './routes/my-journey'
+import { Route as RecoveryResourcesRouteImport } from './routes/recovery-resources'
+import { Route as TheBookRouteImport } from './routes/the-book'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyJourneyRoute = MyJourneyRouteImport.update({
+  id: '/my-journey',
+  path: '/my-journey',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecoveryResourcesRoute = RecoveryResourcesRouteImport.update({
+  id: '/recovery-resources',
+  path: '/recovery-resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheBookRoute = TheBookRouteImport.update({
+  id: '/the-book',
+  path: '/the-book',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/my-journey': typeof MyJourneyRoute
+  '/recovery-resources': typeof RecoveryResourcesRoute
+  '/the-book': typeof TheBookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/my-journey': typeof MyJourneyRoute
+  '/recovery-resources': typeof RecoveryResourcesRoute
+  '/the-book': typeof TheBookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/my-journey': typeof MyJourneyRoute
+  '/recovery-resources': typeof RecoveryResourcesRoute
+  '/the-book': typeof TheBookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/my-journey'
+    | '/recovery-resources'
+    | '/the-book'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/my-journey'
+    | '/recovery-resources'
+    | '/the-book'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/my-journey'
+    | '/recovery-resources'
+    | '/the-book'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  MyJourneyRoute: typeof MyJourneyRoute
+  RecoveryResourcesRoute: typeof RecoveryResourcesRoute
+  TheBookRoute: typeof TheBookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-journey': {
+      id: '/my-journey'
+      path: '/my-journey'
+      fullPath: '/my-journey'
+      preLoaderRoute: typeof MyJourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recovery-resources': {
+      id: '/recovery-resources'
+      path: '/recovery-resources'
+      fullPath: '/recovery-resources'
+      preLoaderRoute: typeof RecoveryResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-book': {
+      id: '/the-book'
+      path: '/the-book'
+      fullPath: '/the-book'
+      preLoaderRoute: typeof TheBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  MyJourneyRoute: MyJourneyRoute,
+  RecoveryResourcesRoute: RecoveryResourcesRoute,
+  TheBookRoute: TheBookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
